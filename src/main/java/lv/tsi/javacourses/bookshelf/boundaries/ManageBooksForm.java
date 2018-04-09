@@ -23,11 +23,15 @@ public class ManageBooksForm implements Serializable{
 
     public void prepareUsers(){
         users = em.createQuery(
-                "select r.user from Reservation r " + "where r.status <> 'RELEASED'")
+                "select distinct r.user from Reservation r " + "where r.status <> 'RELEASED'")
                 .getResultList();
+        System.out.println("hello!!!");
     }
 
-    public void prepareBooks(){
+    public void prepareBooks(User user){
+        System.out.println("Click on user " + user.getId());
+        book = em.createQuery("select distinct r.book from Reservation r " +
+                "where r.user = :user").setParameter("user", user).getResultList();
 
     }
 

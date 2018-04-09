@@ -12,7 +12,38 @@
             <f:viewAction action="#{manageBooksForm.prepareUsers}"/>
         </f:metadata>
 
-
+        <h:form>
+        <h:dataTable value="#{manageBooksForm.users}" var="usr">
+            <h:column>
+                <f:facet name="header">ID</f:facet>
+                #{usr.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Full Name</f:facet>
+                #{usr.fullName}
+            </h:column>
+            <h:column>
+                <f:facet name="header">E-mail</f:facet>
+                #{usr.email}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Options</f:facet>
+                <h:commandButton value="Open" action="#{manageBooksForm.prepareBooks(usr)}">
+                    <f:ajax render="@form" execute="@form"/>
+                </h:commandButton>
+            </h:column>
+        </h:dataTable>
+        <h:dataTable value="#{manageBooksForm.book}" var="bk">
+            <h:column>
+                <f:facet name="header">id</f:facet>
+                #{bk.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">title</f:facet>
+                #{bk.title}
+            </h:column>
+        </h:dataTable>
+        </h:form>
 
     </ui:define>
 </ui:composition>
